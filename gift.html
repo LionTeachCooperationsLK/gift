@@ -1,34 +1,27 @@
-import base64
-
-# Convert uploaded image to Base64 data URL
-with open("vinu-photo.jpg", "rb") as image_file:
-    encoded_string = base64.b64encode(image_file.read()).decode('utf-8')
-    image_data_url = f"data:image/jpeg;base64,{encoded_string}"
-
-html_content = f"""<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="si">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#ffe4ef">
-<title>A Little Birthday Surprise for Vinu 💗</title>
+<title>A Little Birthday Surprise for Vinu 💗 - Special Edition</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap');
 
-:root {{
+:root {
   --pink: #f28ab5;
   --deep: #b83e75;
   --ink: #63394e;
   --cream: #fff8fb;
-}}
+}
 
-* {{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}}
+}
 
-body {{
+body {
   height: 100vh;
   width: 100vw;
   font-family: 'Noto Sans Sinhala', 'DM Sans', sans-serif;
@@ -38,100 +31,173 @@ body {{
   display: flex;
   justify-content: center;
   align-items: center;
-}}
+}
 
-button {{
+button {
   font: inherit;
   cursor: pointer;
-}}
+}
 
-.wrap {{
+/* Splash Screen Styling */
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #fff4f8;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#splash-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.splash-logo {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 10px 25px rgba(184, 62, 117, 0.25);
+  margin-bottom: 20px;
+  animation: pulseLogo 2s infinite ease-in-out;
+}
+
+@keyframes pulseLogo {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+.splash-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #bd5483;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.splash-sub {
+  font-size: 0.95rem;
+  color: #a94d77;
+  font-weight: 500;
+}
+
+.wrap {
   width: min(750px, 92%);
-  height: min(650px, 92vh);
+  height: min(670px, 94vh);
   position: relative;
   z-index: 1;
-}}
+}
 
-.card-container {{
+.card-container {
   position: relative;
   width: 100%;
   height: 100%;
-}}
+}
 
-.page {{
+.page {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.9);
   border: 1px solid #fff;
   box-shadow: 0 18px 55px rgba(184, 62, 117, 0.15);
   border-radius: 30px;
-  padding: clamp(20px, 4vw, 40px);
+  padding: clamp(18px, 4vw, 32px);
   text-align: center;
   backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   opacity: 0;
   pointer-events: none;
   transform: scale(0.9) translateY(40px);
   transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-}}
+}
 
-.page.active {{
+.page.active {
   opacity: 1;
   pointer-events: auto;
   transform: scale(1) translateY(0);
-}}
+}
 
-.top-tag {{
+.content-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.special-badge {
+  background: linear-gradient(120deg, #b94f7e, #d9689c);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  padding: 4px 12px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  box-shadow: 0 4px 12px rgba(185, 79, 126, 0.25);
+}
+
+.top-tag {
   color: #a94d77;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   letter-spacing: 0.08em;
-  margin-bottom: 10px;
-}}
+  margin-bottom: 6px;
+}
 
-.tag {{
+.tag {
   display: inline-block;
   background: #fff0f6;
   color: #bd5c87;
   border-radius: 99px;
-  padding: 6px 14px;
-  font-size: 0.85rem;
-  margin-bottom: 8px;
-}}
+  padding: 5px 13px;
+  font-size: 0.8rem;
+  margin-bottom: 6px;
+}
 
-h1 {{
-  font-size: clamp(2rem, 5vw, 3.2rem);
+h1 {
+  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
   line-height: 1.2;
-  margin: 8px 0;
+  margin: 6px 0;
   color: #bd5483;
-}}
+}
 
-h2 {{
-  font-size: clamp(1.4rem, 3.5vw, 2rem);
+h2 {
+  font-size: clamp(1.3rem, 3.2vw, 1.8rem);
   color: #b94f7e;
-  margin-bottom: 12px;
-}}
+  margin-bottom: 10px;
+}
 
-p {{
-  line-height: 1.7;
-  margin: 8px auto;
-  max-width: 580px;
-  font-size: 0.95rem;
-}}
+p {
+  line-height: 1.6;
+  margin: 6px auto;
+  max-width: 560px;
+  font-size: 0.9rem;
+}
 
-.sub {{
+.sub {
   color: #94677b;
-}}
+}
 
-.photo-container {{
-  margin: 0 auto 12px;
-  width: 150px;
-  height: 150px;
+.photo-container {
+  margin: 0 auto 10px;
+  width: 135px;
+  height: 135px;
   border-radius: 50%;
   padding: 4px;
   background: linear-gradient(145deg, #f49bc0, #d9689c);
@@ -141,159 +207,174 @@ p {{
   display: flex;
   justify-content: center;
   align-items: center;
-}}
+}
 
-.photo-container img {{
+.photo-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
   border-radius: 50%;
   border: 2px solid #fff;
-}}
+}
 
-@keyframes floatPhoto {{
-  0%, 100% {{ transform: translateY(0) rotate(0deg); }}
-  50% {{ transform: translateY(-8px) rotate(2deg); }}
-}}
+@keyframes floatPhoto {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(2deg); }
+}
 
-.hero-flower {{
-  font-size: 3.5rem;
+.hero-flower {
+  font-size: 3.2rem;
   filter: drop-shadow(0 8px 10px rgba(229, 138, 181, 0.3));
   animation: bob 3s ease-in-out infinite;
-}}
+}
 
-@keyframes bob {{
-  50% {{ transform: translateY(-8px) rotate(4deg); }}
-}}
+@keyframes bob {
+  50% { transform: translateY(-7px) rotate(4deg); }
+}
 
-.btn {{
+.btn {
   border: 0;
   border-radius: 99px;
-  padding: 12px 26px;
+  padding: 11px 24px;
   background: linear-gradient(120deg, #f49bc0, #d9689c);
   color: white;
   font-weight: 700;
   box-shadow: 0 8px 20px rgba(217, 104, 156, 0.35);
-  margin: 12px 5px 0;
+  margin: 10px 5px 0;
   transition: all 0.25s ease;
-}}
+}
 
-.btn:hover {{
+.btn:hover {
   transform: translateY(-3px) scale(1.03);
   box-shadow: 0 12px 24px rgba(217, 104, 156, 0.45);
-}}
+}
 
-.btn.secondary {{
+.btn.secondary {
   background: #fff0f6;
   color: #b94f7e;
   box-shadow: none;
   border: 1px solid #f8c5d9;
-}}
+}
 
-.hidden {{
+.hidden {
   display: none !important;
-}}
+}
 
-.envelope {{
-  font-size: 4.5rem;
-  margin: 12px auto;
+.envelope {
+  font-size: 4rem;
+  margin: 10px auto;
   cursor: pointer;
   display: inline-block;
   transition: all 0.3s ease;
   animation: pulseEnv 2s infinite;
-}}
+}
 
-@keyframes pulseEnv {{
-  0%, 100% {{ transform: scale(1); }}
-  50% {{ transform: scale(1.08); }}
-}}
+@keyframes pulseEnv {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
 
-.envelope:hover {{
-  transform: scale(1.2) rotate(-5deg);
-}}
+.envelope:hover {
+  transform: scale(1.15) rotate(-5deg);
+}
 
-.letter {{
+.letter {
   background: #fff9fc;
   border: 1px dashed #e9a4c1;
-  border-radius: 20px;
-  padding: 18px;
+  border-radius: 18px;
+  padding: 15px;
   text-align: left;
-  margin: 12px auto;
-  max-width: 580px;
-  line-height: 1.8;
+  margin: 10px auto;
+  max-width: 540px;
+  line-height: 1.7;
+  font-size: 0.88rem;
   animation: fadeIn 0.5s ease;
-}}
+}
 
-@keyframes fadeIn {{
-  from {{ opacity: 0; transform: translateY(10px); }}
-  to {{ opacity: 1; transform: translateY(0); }}
-}}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-.letter p {{
-  margin: 0 0 8px;
-}}
+.letter p {
+  margin: 0 0 6px;
+}
 
-.cake {{
-  font-size: 4.5rem;
-  margin: 5px;
+.cake {
+  font-size: 4rem;
+  margin: 4px;
   animation: bounceCake 2s infinite;
-}}
+}
 
-@keyframes bounceCake {{
-  0%, 100% {{ transform: translateY(0); }}
-  50% {{ transform: translateY(-10px); }}
-}}
+@keyframes bounceCake {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
 
-.candles {{
-  font-size: 1.8rem;
+.candles {
+  font-size: 1.6rem;
   letter-spacing: 6px;
-}}
+}
 
-.gallery {{
+.gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin: 16px auto 5px;
+  gap: 10px;
+  margin: 12px auto 4px;
   width: 100%;
-  max-width: 450px;
-}}
+  max-width: 420px;
+}
 
-.tile {{
+.tile {
   background: linear-gradient(145deg, #fff0f6, #ffe0ec);
-  border-radius: 16px;
-  padding: 15px 5px;
-  font-size: 1.8rem;
+  border-radius: 14px;
+  padding: 12px 4px;
+  font-size: 1.6rem;
   display: grid;
   place-items: center;
   animation: popTile 3s ease-in-out infinite;
-}}
+}
 
-.tile:nth-child(2) {{ animation-delay: 1s; }}
-.tile:nth-child(3) {{ animation-delay: 2s; }}
+.tile:nth-child(2) { animation-delay: 1s; }
+.tile:nth-child(3) { animation-delay: 2s; }
 
-@keyframes popTile {{
-  0%, 100% {{ transform: scale(1); }}
-  50% {{ transform: scale(1.06); }}
-}}
+@keyframes popTile {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
 
-.heart {{
+.page-footer {
+  font-size: 0.72rem;
+  color: #a77a8d;
+  margin-top: 10px;
+  letter-spacing: 0.04em;
+}
+
+.heart {
   position: fixed;
   bottom: -30px;
   pointer-events: none;
   z-index: 0;
   animation: rise linear forwards;
   opacity: 0.7;
-}}
+}
 
-@keyframes rise {{
-  to {{ transform: translateY(-110vh) rotate(360deg); opacity: 0; }}
-}}
+@keyframes rise {
+  to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
 
-.sparkle {{ color: #e58ab0; }}
+.sparkle { color: #e58ab0; }
 </style>
 </head>
 <body>
+
+<!-- Opening Splash Screen -->
+<div id="splash-screen">
+  <img src="l-logo.jpg" alt="Logo" class="splash-logo" onerror="this.style.display='none'">
+  <div class="splash-title">Lionteach Corporation LK</div>
+  <div class="splash-sub">Powered by Lteach</div>
+</div>
 
 <audio id="bdaySong" loop preload="auto">
   <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
@@ -302,91 +383,119 @@ p {{
 <div class="wrap">
   <div class="card-container">
     
+    <!-- PAGE 1: WELCOME -->
     <section id="welcome" class="page active">
-      <div class="top-tag">A LITTLE SURPRISE MADE JUST FOR YOU <span class="sparkle">♡</span></div>
-      <div class="photo-container">
-        <img src="{image_data_url}" alt="Vinu">
+      <div class="special-badge">Special Edition</div>
+      <div class="content-body">
+        <div class="top-tag">A LITTLE SURPRISE MADE JUST FOR YOU <span class="sparkle">♡</span></div>
+        <div class="photo-container">
+          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYFBgYGBwkIBgcJBwYGCAsICQoKCgoKBggLDAsKDAkKCgr/2wBDAQICAgICAgUDAwUKBwYHCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgr/wAARCAQAAcwDASIAAhEBAxEB/8QAHgAAAQQDAQEBAAAAAAAAAAAAAAIDBQYEBwgJAQr/xABrEAAAAwQFBQoICQcIBwYEAwkBAwQAAgURBhITFCEHIiMxQQgVJDIzQlFhcYE0Q1JTYpGh8AkWJWNygrHB0RdEc5KTouEKJjVUg7LU8UVVVmSWo8IadJTS4vIYJzazRpW04xlldYSFhsTz/8QAGwEBAAMBAQEBA~~~~~~~~" alt="Vinu">
+        </div>
+        <span class="tag">පුංචි Birthday Surprise එකක්</span>
+        <h1>සුභ උපන්දිනයක්<br>Vinu! 💗</h1>
+        <p class="sub">අද දවස ඔයා වගේම ලස්සන, සතුටින් පිරුණු දවසක් වේවා!</p>
+        <p>ඔයා වෙනුවෙන් පුංචි දෙයක් හදලා තියෙනවා… බලන්න කැමතිද?</p>
+        <button class="btn" onclick="goToPage('surprise', true)">Surprise එක බලමු ✨</button>
       </div>
-      <span class="tag">පුංචි Birthday Surprise එකක්</span>
-      <h1>සුභ උපන්දිනයක්<br>Vinu! 💗</h1>
-      <p class="sub">අද දවස ඔයා වගේම ලස්සන, සතුටින් පිරුණු දවසක් වේවා!</p>
-      <p>ඔයා වෙනුවෙන් පුංචි දෙයක් හදලා තියෙනවා… බලන්න කැමතිද?</p>
-      <button class="btn" onclick="goToPage('surprise', true)">Surprise එක බලමු ✨</button>
+      <div class="page-footer">All rights reserved by Lteach</div>
     </section>
 
+    <!-- PAGE 2: SURPRISE LETTER -->
     <section id="surprise" class="page">
-      <div class="hero-flower">🎀</div>
-      <h2>Vinu, මේක ඔයා වෙනුවෙන්මයි!</h2>
-      <p>පුංචි තෑග්ගක් ඇතුළේ තියෙන පුංචි හිතවත්කමක්…</p>
-      <div class="envelope" role="button" tabindex="0" onclick="openLetter()">💌</div>
-      <p class="sub" id="envHint">ලිපිය බලන්න ලියුම් කවරය touch කරන්න</p>
-      
-      <div id="letter" class="letter hidden">
-        <p>ආදරණීය Vinu, 🌸</p>
-        <p>ඔයාට මේ විශේෂ දවසේ කියන්න තියෙන්නේ එකම දෙයයි… ඔයාගේ හැම දවසක්ම අද වගේම ලස්සන වෙන්න ඕනේ.</p>
-        <p>ඔයාගේ හිනාව අඩු නොවෙන්න, හිතේ තියෙන හැම හොඳ බලාපොරොත්තුවක්ම සැබෑ වෙන්න, ජීවිතේට සතුටත් ආදරයත් පිරෙන්න කියලා හදවතින්ම ප්‍රාර්ථනා කරනවා.</p>
-        <p style="text-align:right;margin-top:10px;">— ඔයාට සුභ පතන කෙනෙක් 🌷</p>
-      </div>
+      <div class="special-badge">Special Edition</div>
+      <div class="content-body">
+        <div class="hero-flower">🎀</div>
+        <h2>Vinu, මේක ඔයා වෙනුවෙන්මයි!</h2>
+        <p>පුංචි තෑග්ගක් ඇතුළේ තියෙන පුංචි හිතවත්කමක්…</p>
+        <div class="envelope" role="button" tabindex="0" onclick="openLetter()">💌</div>
+        <p class="sub" id="envHint">ලිපිය බලන්න ලියුම් කවරය touch කරන්න</p>
+        
+        <div id="letter" class="letter hidden">
+          <p>ආදරණීය Vinu, 🌸</p>
+          <p>ඔයාට මේ විශේෂ දවසේ කියන්න තියෙන්නේ එකම දෙයයි… ඔයාගේ හැම දවසක්ම අද වගේම ලස්සන වෙන්න ඕනේ.</p>
+          <p>ඔයාගේ හිනාව අඩු නොවෙන්න, හිතේ තියෙන හැම හොඳ බලාපොරොත්තුවක්ම සැබෑ වෙන්න, ජීවිතේට සතුටත් ආදරයත් පිරෙන්න කියලා හදවතින්ම ප්‍රාර්ථනා කරනවා.</p>
+          <p style="text-align:right;margin-top:10px;">— ඔයාට සුභ පතන කෙනෙක් 🌷</p>
+        </div>
 
-      <button id="nextBtn" class="btn hidden" onclick="goToPage('cake')">තව පුංචි දෙයක් තියෙනවා 🎂</button>
+        <button id="nextBtn" class="btn hidden" onclick="goToPage('cake')">තව පුංචි දෙයක් තියෙනවා 🎂</button>
+      </div>
+      <div class="page-footer">All rights reserved by Lteach</div>
     </section>
 
+    <!-- PAGE 3: CAKE & WISH -->
     <section id="cake" class="page">
-      <h2>Wish එකක් කරන්න, Vinu! ✨</h2>
-      <div class="cake">🎂</div>
-      <div class="candles" id="flames">🕯️🕯️🕯️</div>
-      <p>ඔයාගේ හිතේ තියෙන ලස්සනම ප්‍රාර්ථනාව හිතන්න…</p>
-      <button class="btn" onclick="blow()">Candles නිවන්න 💨</button>
-      <p id="wish" class="hidden">ඔයාගේ හැම හොඳ හීනයක්ම සැබෑ වේවා! 💖</p>
-      <button class="btn secondary" onclick="goToPage('ending')">අවසාන Surprise එක 🌹</button>
+      <div class="special-badge">Special Edition</div>
+      <div class="content-body">
+        <h2>Wish එකක් කරන්න, Vinu! ✨</h2>
+        <div class="cake">🎂</div>
+        <div class="candles" id="flames">🕯️🕯️🕯️</div>
+        <p>ඔයාගේ හිතේ තියෙන ලස්සනම ප්‍රාර්ථනාව හිතන්න…</p>
+        <button class="btn" onclick="blow()">Candles නිවන්න 💨</button>
+        <p id="wish" class="hidden">ඔයාගේ හැම හොඳ හීනයක්ම සැබෑ වේවා! 💖</p>
+        <button class="btn secondary" onclick="goToPage('ending')">අවසාන Surprise එක 🌹</button>
+      </div>
+      <div class="page-footer">All rights reserved by Lteach</div>
     </section>
 
+    <!-- PAGE 4: ENDING -->
     <section id="ending" class="page">
-      <div class="hero-flower">🌹</div>
-      <h2>අන්තිමට පුංචි දෙයක්…</h2>
-      <p>මේ පුංචි Birthday Gift එක ඔයාගේ මූණට හිනාවක් ගෙනාවා නම්, ඒකම මට ලොකු සතුටක්.</p>
-      <p><strong>ඔයා හැමදාමත් විශේෂයි, Vinu. සුභ උපන්දිනයක්! 🌸</strong></p>
-      <div class="gallery">
-        <div class="tile">🌷</div><div class="tile">💗</div><div class="tile">✨</div>
+      <div class="special-badge">Special Edition</div>
+      <div class="content-body">
+        <div class="hero-flower">🌹</div>
+        <h2>අන්තිමට පුංචි දෙයක්…</h2>
+        <p>මේ පුංචි Birthday Gift එක ඔයාගේ මූණට හිනාවක් ගෙනාවා නම්, ඒකම මට ලොකු සතුටක්.</p>
+        <p><strong>ඔයා හැමදාමත් විශේෂයි, Vinu. සුභ උපන්දිනයක්! 🌸</strong></p>
+        <div class="gallery">
+          <div class="tile">🌷</div><div class="tile">💗</div><div class="tile">✨</div>
+        </div>
+        <button class="btn secondary" onclick="goToPage('welcome')">ආයෙත් බලන්න ↻</button>
       </div>
-      <button class="btn secondary" onclick="goToPage('welcome')">ආයෙත් බලන්න ↻</button>
+      <div class="page-footer">All rights reserved by Lteach</div>
     </section>
 
   </div>
 </div>
 
 <script>
-function goToPage(pageId, startMusic = false) {{
-  if (startMusic) {{
+// Auto hide splash screen after 2.5 seconds
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const splash = document.getElementById('splash-screen');
+    splash.classList.add('fade-out');
+  }, 2500);
+});
+
+function goToPage(pageId, startMusic = false) {
+  if (startMusic) {
     const audio = document.getElementById('bdaySong');
     audio.play().catch(e => console.log('Audio autoplay prevented:', e));
-  }}
+  }
   
-  document.querySelectorAll('.page').forEach(p => {{
+  document.querySelectorAll('.page').forEach(p => {
     p.classList.remove('active');
-  }});
+  });
   
-  setTimeout(() => {{
+  setTimeout(() => {
     document.getElementById(pageId).classList.add('active');
-  }}, 100);
-}}
+  }, 100);
+}
 
-function openLetter() {{
+function openLetter() {
   document.getElementById('letter').classList.remove('hidden');
   document.getElementById('nextBtn').classList.remove('hidden');
   document.getElementById('envHint').classList.add('hidden');
   hearts(12);
-}}
+}
 
-function blow() {{
+function blow() {
   document.getElementById('flames').textContent = '✨✨✨';
   document.getElementById('wish').classList.remove('hidden');
   hearts(24);
-}}
+}
 
-function hearts(n) {{
+function hearts(n) {
   const chars = ['💗', '💕', '🌸', '✨'];
-  for (let i = 0; i < n; i++) {{
+  for (let i = 0; i < n; i++) {
     let e = document.createElement('span');
     e.className = 'heart';
     e.textContent = chars[Math.floor(Math.random() * chars.length)];
@@ -395,15 +504,12 @@ function hearts(n) {{
     e.style.animationDuration = (4 + Math.random() * 4) + 's';
     document.body.appendChild(e);
     setTimeout(() => e.remove(), 8500);
-  }}
-}}
+  }
+}
 
-setInterval(() => {{
+setInterval(() => {
   if (Math.random() > 0.45) hearts(1);
-}}, 2600);
+}, 2600);
 </script>
 </body>
-</html>"""
-
-with open("vinu_birthday_surprise.html", "w", encoding="utf-8") as f:
-    f.write(html_content)
+</html>
