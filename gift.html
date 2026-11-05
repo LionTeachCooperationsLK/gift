@@ -27,7 +27,7 @@ body {
   font-family: 'Noto Sans Sinhala', 'DM Sans', sans-serif;
   color: var(--ink);
   background: radial-gradient(circle at 15% 10%, #fff 0 7%, transparent 30%), linear-gradient(145deg, #fff4f8, #ffe0ed 55%, #fff8fb);
-  overflow: hidden; /* Stops normal page scrolling */
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,8 +39,8 @@ button {
 }
 
 .wrap {
-  width: min(750px, 92%);
-  height: min(650px, 92vh);
+  width: min(720px, 92%);
+  height: min(640px, 92vh);
   position: relative;
   z-index: 1;
 }
@@ -51,18 +51,18 @@ button {
   height: 100%;
 }
 
-/* Base style for sections (pages) */
+/* Page slide & scale animation */
 .page {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.92);
   border: 1px solid #fff;
-  box-shadow: 0 18px 55px rgba(184, 62, 117, 0.15);
+  box-shadow: 0 18px 55px rgba(184, 62, 117, 0.18);
   border-radius: 30px;
-  padding: clamp(20px, 4vw, 40px);
+  padding: clamp(20px, 4vw, 36px);
   text-align: center;
   backdrop-filter: blur(12px);
   display: flex;
@@ -71,11 +71,10 @@ button {
   align-items: center;
   opacity: 0;
   pointer-events: none;
-  transform: scale(0.9) translateY(40px);
-  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: scale(0.92) translateY(30px);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Active Page Transition Animation */
 .page.active {
   opacity: 1;
   pointer-events: auto;
@@ -86,7 +85,7 @@ button {
   color: #a94d77;
   font-size: 0.85rem;
   letter-spacing: 0.08em;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .tag {
@@ -96,25 +95,25 @@ button {
   border-radius: 99px;
   padding: 6px 14px;
   font-size: 0.85rem;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 h1 {
   font-size: clamp(2rem, 5vw, 3.2rem);
   line-height: 1.2;
-  margin: 8px 0;
+  margin: 6px 0;
   color: #bd5483;
 }
 
 h2 {
-  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  font-size: clamp(1.3rem, 3.5vw, 1.9rem);
   color: #b94f7e;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 p {
   line-height: 1.7;
-  margin: 8px auto;
+  margin: 6px auto;
   max-width: 580px;
   font-size: 0.95rem;
 }
@@ -123,11 +122,11 @@ p {
   color: #94677b;
 }
 
-/* Photo Container - Crop & Full Frame Fit */
+/* Floating profile photo container */
 .photo-container {
-  margin: 0 auto 12px;
-  width: 150px;
-  height: 150px;
+  margin: 0 auto 10px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   padding: 4px;
   background: linear-gradient(145deg, #f49bc0, #d9689c);
@@ -143,7 +142,7 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%; /* Moves photo face position up */
+  object-position: center 20%;
   border-radius: 50%;
   border: 2px solid #fff;
 }
@@ -154,7 +153,7 @@ p {
 }
 
 .hero-flower {
-  font-size: 3.5rem;
+  font-size: 3.2rem;
   filter: drop-shadow(0 8px 10px rgba(229, 138, 181, 0.3));
   animation: bob 3s ease-in-out infinite;
 }
@@ -171,7 +170,7 @@ p {
   color: white;
   font-weight: 700;
   box-shadow: 0 8px 20px rgba(217, 104, 156, 0.35);
-  margin: 12px 5px 0;
+  margin: 10px 5px 0;
   transition: all 0.25s ease;
 }
 
@@ -192,8 +191,8 @@ p {
 }
 
 .envelope {
-  font-size: 4.5rem;
-  margin: 12px auto;
+  font-size: 4rem;
+  margin: 10px auto;
   cursor: pointer;
   display: inline-block;
   transition: all 0.3s ease;
@@ -213,11 +212,11 @@ p {
   background: #fff9fc;
   border: 1px dashed #e9a4c1;
   border-radius: 20px;
-  padding: 18px;
+  padding: 16px;
   text-align: left;
-  margin: 12px auto;
-  max-width: 580px;
-  line-height: 1.8;
+  margin: 10px auto;
+  max-width: 540px;
+  line-height: 1.7;
   animation: fadeIn 0.5s ease;
 }
 
@@ -227,18 +226,18 @@ p {
 }
 
 .letter p {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
 }
 
 .cake {
-  font-size: 4.5rem;
-  margin: 5px;
+  font-size: 4rem;
+  margin: 4px;
   animation: bounceCake 2s infinite;
 }
 
 @keyframes bounceCake {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-8px); }
 }
 
 .candles {
@@ -250,15 +249,15 @@ p {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  margin: 16px auto 5px;
+  margin: 14px auto 4px;
   width: 100%;
-  max-width: 450px;
+  max-width: 420px;
 }
 
 .tile {
   background: linear-gradient(145deg, #fff0f6, #ffe0ec);
   border-radius: 16px;
-  padding: 15px 5px;
+  padding: 12px 5px;
   font-size: 1.8rem;
   display: grid;
   place-items: center;
@@ -291,11 +290,7 @@ p {
 </head>
 <body>
 
-<!-- Audio element -->
-<audio id="bdaySong" loop preload="auto">
-  <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
-</audio>
-
+<!-- Web Audio API Synthesizer for Happy Birthday Tune -->
 <div class="wrap">
   <div class="card-container">
     
@@ -303,13 +298,14 @@ p {
     <section id="welcome" class="page active">
       <div class="top-tag">A LITTLE SURPRISE MADE JUST FOR YOU <span class="sparkle">♡</span></div>
       <div class="photo-container">
-        <img src="vinu-photo.jpg" alt="Vinu">
+        <!-- Uses local image fallback with onerror handling -->
+        <img src="vinu-photo.jpg" alt="Vinu" onerror="this.onerror=null; this.src='https://placehold.co/200x200/ffe0ed/b83e75?text=Vinu+💗';">
       </div>
       <span class="tag">පුංචි Birthday Surprise එකක්</span>
       <h1>සුභ උපන්දිනයක්<br>Vinu! 💗</h1>
       <p class="sub">අද දවස ඔයා වගේම ලස්සන, සතුටින් පිරුණු දවසක් වේවා!</p>
       <p>ඔයා වෙනුවෙන් පුංචි දෙයක් හදලා තියෙනවා… බලන්න කැමතිද?</p>
-      <button class="btn" onclick="goToPage('surprise', true)">Surprise එක බලමු ✨</button>
+      <button class="btn" onclick="startSurprise()">Surprise එක බලමු ✨</button>
     </section>
 
     <!-- PAGE 2: SURPRISE LETTER -->
@@ -324,7 +320,7 @@ p {
         <p>ආදරණීය Vinu, 🌸</p>
         <p>ඔයාට මේ විශේෂ දවසේ කියන්න තියෙන්නේ එකම දෙයයි… ඔයාගේ හැම දවසක්ම අද වගේම ලස්සන වෙන්න ඕනේ.</p>
         <p>ඔයාගේ හිනාව අඩු නොවෙන්න, හිතේ තියෙන හැම හොඳ බලාපොරොත්තුවක්ම සැබෑ වෙන්න, ජීවිතේට සතුටත් ආදරයත් පිරෙන්න කියලා හදවතින්ම ප්‍රාර්ථනා කරනවා.</p>
-        <p style="text-align:right;margin-top:10px;">— ඔයාට සුභ පතන කෙනෙක් 🌷</p>
+        <p style="text-align:right;margin-top:8px;">— ඔයාට සුභ පතන කෙනෙක් 🌷</p>
       </div>
 
       <button id="nextBtn" class="btn hidden" onclick="goToPage('cake')">තව පුංචි දෙයක් තියෙනවා 🎂</button>
@@ -357,20 +353,71 @@ p {
 </div>
 
 <script>
-function goToPage(pageId, startMusic = false) {
-  if (startMusic) {
-    const audio = document.getElementById('bdaySong');
-    audio.play().catch(e => console.log('Audio autoplay prevented:', e));
-  }
+// Web Audio API Synthesizer for Happy Birthday Tune
+let audioCtx = null;
+let musicPlaying = false;
+
+function playBirthdayMelody() {
+  if (musicPlaying) return;
+  musicPlaying = true;
   
-  // Transition logic
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  audioCtx = new AudioContext();
+
+  const notes = [
+    {f: 261.63, d: 0.3}, {f: 261.63, d: 0.3}, {f: 293.66, d: 0.6}, {f: 261.63, d: 0.6}, {f: 349.23, d: 0.6}, {f: 329.63, d: 1.0},
+    {f: 261.63, d: 0.3}, {f: 261.63, d: 0.3}, {f: 293.66, d: 0.6}, {f: 261.63, d: 0.6}, {f: 392.00, d: 0.6}, {f: 349.23, d: 1.0},
+    {f: 261.63, d: 0.3}, {f: 261.63, d: 0.3}, {f: 523.25, d: 0.6}, {f: 440.00, d: 0.6}, {f: 349.23, d: 0.6}, {f: 329.63, d: 0.6}, {f: 293.66, d: 0.8},
+    {f: 466.16, d: 0.3}, {f: 466.16, d: 0.3}, {f: 440.00, d: 0.6}, {f: 349.23, d: 0.6}, {f: 392.00, d: 0.6}, {f: 349.23, d: 1.2}
+  ];
+
+  let time = audioCtx.currentTime + 0.1;
+
+  function scheduleTune() {
+    notes.forEach(note => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      
+      osc.type = 'sine';
+      osc.frequency.value = note.f;
+      
+      gain.gain.setValueAtTime(0, time);
+      gain.gain.linearRampToValueAtTime(0.15, time + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.001, time + note.d - 0.05);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start(time);
+      osc.stop(time + note.d);
+      time += note.d + 0.08;
+    });
+    
+    // Loop tune seamlessly
+    setTimeout(() => {
+      if (musicPlaying) {
+        time = audioCtx.currentTime + 0.1;
+        scheduleTune();
+      }
+    }, (time - audioCtx.currentTime) * 1000);
+  }
+
+  scheduleTune();
+}
+
+function startSurprise() {
+  playBirthdayMelody();
+  goToPage('surprise');
+}
+
+function goToPage(pageId) {
   document.querySelectorAll('.page').forEach(p => {
     p.classList.remove('active');
   });
   
   setTimeout(() => {
     document.getElementById(pageId).classList.add('active');
-  }, 100);
+  }, 80);
 }
 
 function openLetter() {
