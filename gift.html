@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+import base64
+
+# Convert uploaded image to Base64 data URL
+with open("vinu-photo.jpg", "rb") as image_file:
+    encoded_string = base64.b64encode(image_file.read()).decode('utf-8')
+    image_data_url = f"data:image/jpeg;base64,{encoded_string}"
+
+html_content = f"""<!DOCTYPE html>
 <html lang="si">
 <head>
 <meta charset="UTF-8">
@@ -8,20 +15,20 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap');
 
-:root {
+:root {{
   --pink: #f28ab5;
   --deep: #b83e75;
   --ink: #63394e;
   --cream: #fff8fb;
-}
+}}
 
-* {
+* {{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
+}}
 
-body {
+body {{
   height: 100vh;
   width: 100vw;
   font-family: 'Noto Sans Sinhala', 'DM Sans', sans-serif;
@@ -31,38 +38,37 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+}}
 
-button {
+button {{
   font: inherit;
   cursor: pointer;
-}
+}}
 
-.wrap {
-  width: min(720px, 92%);
-  height: min(640px, 92vh);
+.wrap {{
+  width: min(750px, 92%);
+  height: min(650px, 92vh);
   position: relative;
   z-index: 1;
-}
+}}
 
-.card-container {
+.card-container {{
   position: relative;
   width: 100%;
   height: 100%;
-}
+}}
 
-/* Page slide & scale animation */
-.page {
+.page {{
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.88);
   border: 1px solid #fff;
-  box-shadow: 0 18px 55px rgba(184, 62, 117, 0.18);
+  box-shadow: 0 18px 55px rgba(184, 62, 117, 0.15);
   border-radius: 30px;
-  padding: clamp(20px, 4vw, 36px);
+  padding: clamp(20px, 4vw, 40px);
   text-align: center;
   backdrop-filter: blur(12px);
   display: flex;
@@ -71,62 +77,61 @@ button {
   align-items: center;
   opacity: 0;
   pointer-events: none;
-  transform: scale(0.92) translateY(30px);
-  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
+  transform: scale(0.9) translateY(40px);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}}
 
-.page.active {
+.page.active {{
   opacity: 1;
   pointer-events: auto;
   transform: scale(1) translateY(0);
-}
+}}
 
-.top-tag {
+.top-tag {{
   color: #a94d77;
   font-size: 0.85rem;
   letter-spacing: 0.08em;
-  margin-bottom: 8px;
-}
+  margin-bottom: 10px;
+}}
 
-.tag {
+.tag {{
   display: inline-block;
   background: #fff0f6;
   color: #bd5c87;
   border-radius: 99px;
   padding: 6px 14px;
   font-size: 0.85rem;
-  margin-bottom: 6px;
-}
+  margin-bottom: 8px;
+}}
 
-h1 {
+h1 {{
   font-size: clamp(2rem, 5vw, 3.2rem);
   line-height: 1.2;
-  margin: 6px 0;
+  margin: 8px 0;
   color: #bd5483;
-}
+}}
 
-h2 {
-  font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+h2 {{
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
   color: #b94f7e;
-  margin-bottom: 10px;
-}
+  margin-bottom: 12px;
+}}
 
-p {
+p {{
   line-height: 1.7;
-  margin: 6px auto;
+  margin: 8px auto;
   max-width: 580px;
   font-size: 0.95rem;
-}
+}}
 
-.sub {
+.sub {{
   color: #94677b;
-}
+}}
 
-/* Floating profile photo container */
-.photo-container {
-  margin: 0 auto 10px;
-  width: 140px;
-  height: 140px;
+.photo-container {{
+  margin: 0 auto 12px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   padding: 4px;
   background: linear-gradient(145deg, #f49bc0, #d9689c);
@@ -136,33 +141,33 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+}}
 
-.photo-container img {
+.photo-container img {{
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
   border-radius: 50%;
   border: 2px solid #fff;
-}
+}}
 
-@keyframes floatPhoto {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-8px) rotate(2deg); }
-}
+@keyframes floatPhoto {{
+  0%, 100% {{ transform: translateY(0) rotate(0deg); }}
+  50% {{ transform: translateY(-8px) rotate(2deg); }}
+}}
 
-.hero-flower {
-  font-size: 3.2rem;
+.hero-flower {{
+  font-size: 3.5rem;
   filter: drop-shadow(0 8px 10px rgba(229, 138, 181, 0.3));
   animation: bob 3s ease-in-out infinite;
-}
+}}
 
-@keyframes bob {
-  50% { transform: translateY(-8px) rotate(4deg); }
-}
+@keyframes bob {{
+  50% {{ transform: translateY(-8px) rotate(4deg); }}
+}}
 
-.btn {
+.btn {{
   border: 0;
   border-radius: 99px;
   padding: 12px 26px;
@@ -170,145 +175,145 @@ p {
   color: white;
   font-weight: 700;
   box-shadow: 0 8px 20px rgba(217, 104, 156, 0.35);
-  margin: 10px 5px 0;
+  margin: 12px 5px 0;
   transition: all 0.25s ease;
-}
+}}
 
-.btn:hover {
+.btn:hover {{
   transform: translateY(-3px) scale(1.03);
   box-shadow: 0 12px 24px rgba(217, 104, 156, 0.45);
-}
+}}
 
-.btn.secondary {
+.btn.secondary {{
   background: #fff0f6;
   color: #b94f7e;
   box-shadow: none;
   border: 1px solid #f8c5d9;
-}
+}}
 
-.hidden {
+.hidden {{
   display: none !important;
-}
+}}
 
-.envelope {
-  font-size: 4rem;
-  margin: 10px auto;
+.envelope {{
+  font-size: 4.5rem;
+  margin: 12px auto;
   cursor: pointer;
   display: inline-block;
   transition: all 0.3s ease;
   animation: pulseEnv 2s infinite;
-}
+}}
 
-@keyframes pulseEnv {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.08); }
-}
+@keyframes pulseEnv {{
+  0%, 100% {{ transform: scale(1); }}
+  50% {{ transform: scale(1.08); }}
+}}
 
-.envelope:hover {
+.envelope:hover {{
   transform: scale(1.2) rotate(-5deg);
-}
+}}
 
-.letter {
+.letter {{
   background: #fff9fc;
   border: 1px dashed #e9a4c1;
   border-radius: 20px;
-  padding: 16px;
+  padding: 18px;
   text-align: left;
-  margin: 10px auto;
-  max-width: 540px;
-  line-height: 1.7;
+  margin: 12px auto;
+  max-width: 580px;
+  line-height: 1.8;
   animation: fadeIn 0.5s ease;
-}
+}}
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes fadeIn {{
+  from {{ opacity: 0; transform: translateY(10px); }}
+  to {{ opacity: 1; transform: translateY(0); }}
+}}
 
-.letter p {
-  margin: 0 0 6px;
-}
+.letter p {{
+  margin: 0 0 8px;
+}}
 
-.cake {
-  font-size: 4rem;
-  margin: 4px;
+.cake {{
+  font-size: 4.5rem;
+  margin: 5px;
   animation: bounceCake 2s infinite;
-}
+}}
 
-@keyframes bounceCake {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
+@keyframes bounceCake {{
+  0%, 100% {{ transform: translateY(0); }}
+  50% {{ transform: translateY(-10px); }}
+}}
 
-.candles {
+.candles {{
   font-size: 1.8rem;
   letter-spacing: 6px;
-}
+}}
 
-.gallery {
+.gallery {{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  margin: 14px auto 4px;
+  margin: 16px auto 5px;
   width: 100%;
-  max-width: 420px;
-}
+  max-width: 450px;
+}}
 
-.tile {
+.tile {{
   background: linear-gradient(145deg, #fff0f6, #ffe0ec);
   border-radius: 16px;
-  padding: 12px 5px;
+  padding: 15px 5px;
   font-size: 1.8rem;
   display: grid;
   place-items: center;
   animation: popTile 3s ease-in-out infinite;
-}
+}}
 
-.tile:nth-child(2) { animation-delay: 1s; }
-.tile:nth-child(3) { animation-delay: 2s; }
+.tile:nth-child(2) {{ animation-delay: 1s; }}
+.tile:nth-child(3) {{ animation-delay: 2s; }}
 
-@keyframes popTile {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.06); }
-}
+@keyframes popTile {{
+  0%, 100% {{ transform: scale(1); }}
+  50% {{ transform: scale(1.06); }}
+}}
 
-.heart {
+.heart {{
   position: fixed;
   bottom: -30px;
   pointer-events: none;
   z-index: 0;
   animation: rise linear forwards;
   opacity: 0.7;
-}
+}}
 
-@keyframes rise {
-  to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
-}
+@keyframes rise {{
+  to {{ transform: translateY(-110vh) rotate(360deg); opacity: 0; }}
+}}
 
-.sparkle { color: #e58ab0; }
+.sparkle {{ color: #e58ab0; }}
 </style>
 </head>
 <body>
 
-<!-- Web Audio API Synthesizer for Happy Birthday Tune -->
+<audio id="bdaySong" loop preload="auto">
+  <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
+</audio>
+
 <div class="wrap">
   <div class="card-container">
     
-    <!-- PAGE 1: WELCOME -->
     <section id="welcome" class="page active">
       <div class="top-tag">A LITTLE SURPRISE MADE JUST FOR YOU <span class="sparkle">♡</span></div>
       <div class="photo-container">
-        <!-- Uses local image fallback with onerror handling -->
-        <img src="vinu-photo.jpg" alt="Vinu" onerror="this.onerror=null; this.src='https://placehold.co/200x200/ffe0ed/b83e75?text=Vinu+💗';">
+        <img src="{image_data_url}" alt="Vinu">
       </div>
       <span class="tag">පුංචි Birthday Surprise එකක්</span>
       <h1>සුභ උපන්දිනයක්<br>Vinu! 💗</h1>
       <p class="sub">අද දවස ඔයා වගේම ලස්සන, සතුටින් පිරුණු දවසක් වේවා!</p>
       <p>ඔයා වෙනුවෙන් පුංචි දෙයක් හදලා තියෙනවා… බලන්න කැමතිද?</p>
-      <button class="btn" onclick="startSurprise()">Surprise එක බලමු ✨</button>
+      <button class="btn" onclick="goToPage('surprise', true)">Surprise එක බලමු ✨</button>
     </section>
 
-    <!-- PAGE 2: SURPRISE LETTER -->
     <section id="surprise" class="page">
       <div class="hero-flower">🎀</div>
       <h2>Vinu, මේක ඔයා වෙනුවෙන්මයි!</h2>
@@ -320,13 +325,12 @@ p {
         <p>ආදරණීය Vinu, 🌸</p>
         <p>ඔයාට මේ විශේෂ දවසේ කියන්න තියෙන්නේ එකම දෙයයි… ඔයාගේ හැම දවසක්ම අද වගේම ලස්සන වෙන්න ඕනේ.</p>
         <p>ඔයාගේ හිනාව අඩු නොවෙන්න, හිතේ තියෙන හැම හොඳ බලාපොරොත්තුවක්ම සැබෑ වෙන්න, ජීවිතේට සතුටත් ආදරයත් පිරෙන්න කියලා හදවතින්ම ප්‍රාර්ථනා කරනවා.</p>
-        <p style="text-align:right;margin-top:8px;">— ඔයාට සුභ පතන කෙනෙක් 🌷</p>
+        <p style="text-align:right;margin-top:10px;">— ඔයාට සුභ පතන කෙනෙක් 🌷</p>
       </div>
 
       <button id="nextBtn" class="btn hidden" onclick="goToPage('cake')">තව පුංචි දෙයක් තියෙනවා 🎂</button>
     </section>
 
-    <!-- PAGE 3: CAKE & WISH -->
     <section id="cake" class="page">
       <h2>Wish එකක් කරන්න, Vinu! ✨</h2>
       <div class="cake">🎂</div>
@@ -337,7 +341,6 @@ p {
       <button class="btn secondary" onclick="goToPage('ending')">අවසාන Surprise එක 🌹</button>
     </section>
 
-    <!-- PAGE 4: ENDING -->
     <section id="ending" class="page">
       <div class="hero-flower">🌹</div>
       <h2>අන්තිමට පුංචි දෙයක්…</h2>
@@ -353,89 +356,37 @@ p {
 </div>
 
 <script>
-// Web Audio API Synthesizer for Happy Birthday Tune
-let audioCtx = null;
-let musicPlaying = false;
-
-function playBirthdayMelody() {
-  if (musicPlaying) return;
-  musicPlaying = true;
+function goToPage(pageId, startMusic = false) {{
+  if (startMusic) {{
+    const audio = document.getElementById('bdaySong');
+    audio.play().catch(e => console.log('Audio autoplay prevented:', e));
+  }}
   
-  const AudioContext = window.AudioContext || window.webkitAudioContext;
-  audioCtx = new AudioContext();
-
-  const notes = [
-    {f: 261.63, d: 0.3}, {f: 261.63, d: 0.3}, {f: 293.66, d: 0.6}, {f: 261.63, d: 0.6}, {f: 349.23, d: 0.6}, {f: 329.63, d: 1.0},
-    {f: 261.63, d: 0.3}, {f: 261.63, d: 0.3}, {f: 293.66, d: 0.6}, {f: 261.63, d: 0.6}, {f: 392.00, d: 0.6}, {f: 349.23, d: 1.0},
-    {f: 261.63, d: 0.3}, {f: 261.63, d: 0.3}, {f: 523.25, d: 0.6}, {f: 440.00, d: 0.6}, {f: 349.23, d: 0.6}, {f: 329.63, d: 0.6}, {f: 293.66, d: 0.8},
-    {f: 466.16, d: 0.3}, {f: 466.16, d: 0.3}, {f: 440.00, d: 0.6}, {f: 349.23, d: 0.6}, {f: 392.00, d: 0.6}, {f: 349.23, d: 1.2}
-  ];
-
-  let time = audioCtx.currentTime + 0.1;
-
-  function scheduleTune() {
-    notes.forEach(note => {
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      
-      osc.type = 'sine';
-      osc.frequency.value = note.f;
-      
-      gain.gain.setValueAtTime(0, time);
-      gain.gain.linearRampToValueAtTime(0.15, time + 0.05);
-      gain.gain.exponentialRampToValueAtTime(0.001, time + note.d - 0.05);
-
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-
-      osc.start(time);
-      osc.stop(time + note.d);
-      time += note.d + 0.08;
-    });
-    
-    // Loop tune seamlessly
-    setTimeout(() => {
-      if (musicPlaying) {
-        time = audioCtx.currentTime + 0.1;
-        scheduleTune();
-      }
-    }, (time - audioCtx.currentTime) * 1000);
-  }
-
-  scheduleTune();
-}
-
-function startSurprise() {
-  playBirthdayMelody();
-  goToPage('surprise');
-}
-
-function goToPage(pageId) {
-  document.querySelectorAll('.page').forEach(p => {
+  document.querySelectorAll('.page').forEach(p => {{
     p.classList.remove('active');
-  });
+  }});
   
-  setTimeout(() => {
+  setTimeout(() => {{
     document.getElementById(pageId).classList.add('active');
-  }, 80);
-}
+  }}, 100);
+}}
 
-function openLetter() {
+function openLetter() {{
   document.getElementById('letter').classList.remove('hidden');
   document.getElementById('nextBtn').classList.remove('hidden');
   document.getElementById('envHint').classList.add('hidden');
   hearts(12);
-}
+}}
 
-function blow() {
+function blow() {{
   document.getElementById('flames').textContent = '✨✨✨';
   document.getElementById('wish').classList.remove('hidden');
   hearts(24);
-}
+}}
 
-function hearts(n) {
+function hearts(n) {{
   const chars = ['💗', '💕', '🌸', '✨'];
-  for (let i = 0; i < n; i++) {
+  for (let i = 0; i < n; i++) {{
     let e = document.createElement('span');
     e.className = 'heart';
     e.textContent = chars[Math.floor(Math.random() * chars.length)];
@@ -444,12 +395,15 @@ function hearts(n) {
     e.style.animationDuration = (4 + Math.random() * 4) + 's';
     document.body.appendChild(e);
     setTimeout(() => e.remove(), 8500);
-  }
-}
+  }}
+}}
 
-setInterval(() => {
+setInterval(() => {{
   if (Math.random() > 0.45) hearts(1);
-}, 2600);
+}}, 2600);
 </script>
 </body>
-</html>
+</html>"""
+
+with open("vinu_birthday_surprise.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
