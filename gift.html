@@ -7,195 +7,402 @@
 <title>A Little Birthday Surprise for Vinu 💗</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap');
-:root{--pink:#f28ab5;--deep:#b83e75;--ink:#63394e;--cream:#fff8fb}
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;font-family:'Noto Sans Sinhala','DM Sans',sans-serif;color:var(--ink);background:radial-gradient(circle at 15% 10%,#fff 0 7%,transparent 30%),linear-gradient(145deg,#fff4f8,#ffe0ed 55%,#fff8fb);overflow-x:hidden}
-button{font:inherit;cursor:pointer}
-.wrap{width:min(920px,92%);margin:auto;padding:28px 0 54px;position:relative;z-index:1}
-.top{text-align:center;margin:12px 0 24px;color:#a94d77;font-size:.9rem;letter-spacing:.08em}
-.card{background:#ffffffd9;border:1px solid #fff;box-shadow:0 18px 55px #b83e751c;border-radius:30px;padding:clamp(22px,5vw,48px);text-align:center;backdrop-filter:blur(10px)}
-.tag{display:inline-block;background:#fff0f6;color:#bd5c87;border-radius:99px;padding:8px 15px;font-size:.85rem}
-h1{font-size:clamp(2.1rem,7vw,4.3rem);line-height:1.2;margin:18px 0 12px;color:#bd5483}
-h2{font-size:clamp(1.45rem,4vw,2.1rem);color:#b94f7e;margin:0 0 15px}
-p{line-height:1.9;margin:10px auto;max-width:650px}
-.sub{color:#94677b}
 
-/* Photo Styling with Animation */
+:root {
+  --pink: #f28ab5;
+  --deep: #b83e75;
+  --ink: #63394e;
+  --cream: #fff8fb;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Noto Sans Sinhala', 'DM Sans', sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at 15% 10%, #fff 0 7%, transparent 30%), linear-gradient(145deg, #fff4f8, #ffe0ed 55%, #fff8fb);
+  overflow: hidden; /* Stops normal page scrolling */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.wrap {
+  width: min(750px, 92%);
+  height: min(650px, 92vh);
+  position: relative;
+  z-index: 1;
+}
+
+.card-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Base style for sections (pages) */
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid #fff;
+  box-shadow: 0 18px 55px rgba(184, 62, 117, 0.15);
+  border-radius: 30px;
+  padding: clamp(20px, 4vw, 40px);
+  text-align: center;
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9) translateY(40px);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Active Page Transition Animation */
+.page.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1) translateY(0);
+}
+
+.top-tag {
+  color: #a94d77;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.tag {
+  display: inline-block;
+  background: #fff0f6;
+  color: #bd5c87;
+  border-radius: 99px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.2;
+  margin: 8px 0;
+  color: #bd5483;
+}
+
+h2 {
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  color: #b94f7e;
+  margin-bottom: 12px;
+}
+
+p {
+  line-height: 1.7;
+  margin: 8px auto;
+  max-width: 580px;
+  font-size: 0.95rem;
+}
+
+.sub {
+  color: #94677b;
+}
+
+/* Photo Container - Crop & Full Frame Fit */
 .photo-container {
-  margin: 20px auto;
-  width: 180px;
-  height: 180px;
+  margin: 0 auto 12px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  padding: 5px;
+  padding: 4px;
   background: linear-gradient(145deg, #f49bc0, #d9689c);
   box-shadow: 0 10px 25px rgba(184, 62, 117, 0.3);
   animation: floatPhoto 4s ease-in-out infinite;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .photo-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 20%; /* Moves photo face position up */
   border-radius: 50%;
-  border: 3px solid #fff;
-}
-@keyframes floatPhoto {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-8px) scale(1.02); }
+  border: 2px solid #fff;
 }
 
-.hero-flower{font-size:clamp(2.5rem,8vw,5rem);filter:drop-shadow(0 8px 10px #e58ab544);animation:bob 3s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(-9px) rotate(3deg)}}
-.btn{border:0;border-radius:99px;padding:13px 23px;background:linear-gradient(120deg,#f49bc0,#d9689c);color:white;font-weight:700;box-shadow:0 8px 20px #d9689c40;margin:10px 5px;transition:.2s}
-.btn:hover{transform:translateY(-2px);filter:brightness(1.03)}
-.btn.secondary{background:#fff0f6;color:#b94f7e;box-shadow:none;border:1px solid #f8c5d9}
-.hidden{display:none!important}
-.envelope{font-size:5rem;margin:18px auto;cursor:pointer;display:inline-block;transition:.25s; animation: pulseEnv 2s infinite;}
-@keyframes pulseEnv { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
-.envelope:hover{transform:scale(1.15) rotate(-4deg)}
-.letter{background:#fff9fc;border:1px dashed #e9a4c1;border-radius:22px;padding:22px;text-align:left;margin:20px auto;max-width:650px;line-height:2}
-.letter p{margin:0 0 12px}
-.cake{font-size:5rem;margin:8px; animation: bounceCake 2s infinite;}
-@keyframes bounceCake { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-.candles{font-size:2rem;letter-spacing:8px}
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px auto;max-width:580px}
-.tile{background:linear-gradient(145deg,#fff0f6,#ffe0ec);border-radius:18px;padding:18px 8px;font-size:2rem;min-height:95px;display:grid;place-items:center; animation: popTile 3s ease-in-out infinite;}
+@keyframes floatPhoto {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+.hero-flower {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 8px 10px rgba(229, 138, 181, 0.3));
+  animation: bob 3s ease-in-out infinite;
+}
+
+@keyframes bob {
+  50% { transform: translateY(-8px) rotate(4deg); }
+}
+
+.btn {
+  border: 0;
+  border-radius: 99px;
+  padding: 12px 26px;
+  background: linear-gradient(120deg, #f49bc0, #d9689c);
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(217, 104, 156, 0.35);
+  margin: 12px 5px 0;
+  transition: all 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(217, 104, 156, 0.45);
+}
+
+.btn.secondary {
+  background: #fff0f6;
+  color: #b94f7e;
+  box-shadow: none;
+  border: 1px solid #f8c5d9;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.envelope {
+  font-size: 4.5rem;
+  margin: 12px auto;
+  cursor: pointer;
+  display: inline-block;
+  transition: all 0.3s ease;
+  animation: pulseEnv 2s infinite;
+}
+
+@keyframes pulseEnv {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.envelope:hover {
+  transform: scale(1.2) rotate(-5deg);
+}
+
+.letter {
+  background: #fff9fc;
+  border: 1px dashed #e9a4c1;
+  border-radius: 20px;
+  padding: 18px;
+  text-align: left;
+  margin: 12px auto;
+  max-width: 580px;
+  line-height: 1.8;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.letter p {
+  margin: 0 0 8px;
+}
+
+.cake {
+  font-size: 4.5rem;
+  margin: 5px;
+  animation: bounceCake 2s infinite;
+}
+
+@keyframes bounceCake {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.candles {
+  font-size: 1.8rem;
+  letter-spacing: 6px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 16px auto 5px;
+  width: 100%;
+  max-width: 450px;
+}
+
+.tile {
+  background: linear-gradient(145deg, #fff0f6, #ffe0ec);
+  border-radius: 16px;
+  padding: 15px 5px;
+  font-size: 1.8rem;
+  display: grid;
+  place-items: center;
+  animation: popTile 3s ease-in-out infinite;
+}
+
 .tile:nth-child(2) { animation-delay: 1s; }
 .tile:nth-child(3) { animation-delay: 2s; }
-@keyframes popTile { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-.music-control {
-  margin: 15px auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #fff0f6;
-  border: 1px solid #f8c5d9;
-  padding: 8px 16px;
-  border-radius: 99px;
-  color: #b94f7e;
-  font-size: 0.85rem;
-  font-weight: 600;
+@keyframes popTile {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
 }
 
-.footer{font-size:.8rem;color:#a77a8d;text-align:center;margin-top:22px}
-.heart{position:fixed;bottom:-30px;pointer-events:none;z-index:0;animation:rise linear forwards;opacity:.7}
-@keyframes rise{to{transform:translateY(-110vh) rotate(360deg);opacity:0}}
-.sparkle{color:#e58ab0}
-@media(max-width:520px){.gallery{gap:8px}.tile{min-height:78px;padding:12px 4px}.card{border-radius:24px}.letter{padding:17px}}
+.heart {
+  position: fixed;
+  bottom: -30px;
+  pointer-events: none;
+  z-index: 0;
+  animation: rise linear forwards;
+  opacity: 0.7;
+}
+
+@keyframes rise {
+  to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+.sparkle { color: #e58ab0; }
 </style>
 </head>
 <body>
 
-<!-- Background Birthday Song Audio (Auto-playing with user interaction fallback) -->
-<audio id="bdaySong" loop>
-  <!-- Happy Birthday Instrumental Audio Stream -->
+<!-- Audio element -->
+<audio id="bdaySong" loop preload="auto">
   <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
 </audio>
 
 <div class="wrap">
-  <div class="top">A LITTLE SURPRISE MADE JUST FOR YOU <span class="sparkle">♡</span></div>
-  <main class="card">
-    <section id="welcome">
+  <div class="card-container">
+    
+    <!-- PAGE 1: WELCOME -->
+    <section id="welcome" class="page active">
+      <div class="top-tag">A LITTLE SURPRISE MADE JUST FOR YOU <span class="sparkle">♡</span></div>
       <div class="photo-container">
         <img src="vinu-photo.jpg" alt="Vinu">
       </div>
       <span class="tag">පුංචි Birthday Surprise එකක්</span>
       <h1>සුභ උපන්දිනයක්<br>Vinu! 💗</h1>
       <p class="sub">අද දවස ඔයා වගේම ලස්සන, සතුටින් පිරුණු දවසක් වේවා!</p>
-      
-      <div class="music-control" id="musicNotice">
-        🎵 Music එකත් එක්ක Surprise එක බලමු!
-      </div>
-
       <p>ඔයා වෙනුවෙන් පුංචි දෙයක් හදලා තියෙනවා… බලන්න කැමතිද?</p>
-      <button class="btn" onclick="startSurprise()">Surprise එක බලමු ✨</button>
+      <button class="btn" onclick="goToPage('surprise', true)">Surprise එක බලමු ✨</button>
     </section>
 
-    <section id="surprise" class="hidden">
+    <!-- PAGE 2: SURPRISE LETTER -->
+    <section id="surprise" class="page">
       <div class="hero-flower">🎀</div>
       <h2>Vinu, මේක ඔයා වෙනුවෙන්මයි!</h2>
       <p>පුංචි තෑග්ගක් ඇතුළේ තියෙන පුංචි හිතවත්කමක්…</p>
-      <div class="envelope" role="button" tabindex="0" aria-label="ලිපිය විවෘත කරන්න" onclick="openLetter()" onkeydown="if(event.key==='Enter'||event.key===' ')openLetter()">💌</div>
-      <p class="sub">ලිපිය බලන්න ලියුම් කවරය touch කරන්න</p>
+      <div class="envelope" role="button" tabindex="0" onclick="openLetter()">💌</div>
+      <p class="sub" id="envHint">ලිපිය බලන්න ලියුම් කවරය touch කරන්න</p>
+      
       <div id="letter" class="letter hidden">
         <p>ආදරණීය Vinu, 🌸</p>
         <p>ඔයාට මේ විශේෂ දවසේ කියන්න තියෙන්නේ එකම දෙයයි… ඔයාගේ හැම දවසක්ම අද වගේම ලස්සන වෙන්න ඕනේ.</p>
         <p>ඔයාගේ හිනාව අඩු නොවෙන්න, හිතේ තියෙන හැම හොඳ බලාපොරොත්තුවක්ම සැබෑ වෙන්න, ජීවිතේට සතුටත් ආදරයත් පිරෙන්න කියලා හදවතින්ම ප්‍රාර්ථනා කරනවා.</p>
-        <p>ඔයාට නොදැනුණත්, සමහර අයගේ දවස ලස්සන කරන්න ඔයාගේ පුංචි හිනාවකටත් පුළුවන්. 💗</p>
-        <p>හැමදාම සතුටින් ඉන්න!</p>
-        <p style="text-align:right;margin-top:18px">— ඔයාට සුභ පතන කෙනෙක් 🌷</p>
+        <p style="text-align:right;margin-top:10px;">— ඔයාට සුභ පතන කෙනෙක් 🌷</p>
       </div>
-      <button id="nextBtn" class="btn hidden" onclick="show('cake')">තව පුංචි දෙයක් තියෙනවා 🎂</button>
+
+      <button id="nextBtn" class="btn hidden" onclick="goToPage('cake')">තව පුංචි දෙයක් තියෙනවා 🎂</button>
     </section>
 
-    <section id="cake" class="hidden">
+    <!-- PAGE 3: CAKE & WISH -->
+    <section id="cake" class="page">
       <h2>Wish එකක් කරන්න, Vinu! ✨</h2>
       <div class="cake">🎂</div>
       <div class="candles" id="flames">🕯️🕯️🕯️</div>
       <p>ඔයාගේ හිතේ තියෙන ලස්සනම ප්‍රාර්ථනාව හිතන්න…</p>
       <button class="btn" onclick="blow()">Candles නිවන්න 💨</button>
       <p id="wish" class="hidden">ඔයාගේ හැම හොඳ හීනයක්ම සැබෑ වේවා! 💖</p>
-      <button class="btn secondary" onclick="show('ending')">අවසාන Surprise එක 🌹</button>
+      <button class="btn secondary" onclick="goToPage('ending')">අවසාන Surprise එක 🌹</button>
     </section>
 
-    <section id="ending" class="hidden">
+    <!-- PAGE 4: ENDING -->
+    <section id="ending" class="page">
       <div class="hero-flower">🌹</div>
       <h2>අන්තිමට පුංචි දෙයක්…</h2>
       <p>මේ පුංචි Birthday Gift එක ඔයාගේ මූණට හිනාවක් ගෙනාවා නම්, ඒකම මට ලොකු සතුටක්.</p>
-      <p>කෙනෙක් ගැන හිතද්දී හිතට හරිම ලස්සන හැඟීමක් දැනෙන්න පුළුවන් නේද? සමහර හැඟීම් වචනවලට පෙරළන්න ටිකක් කල් යනවා… 💗</p>
       <p><strong>ඔයා හැමදාමත් විශේෂයි, Vinu. සුභ උපන්දිනයක්! 🌸</strong></p>
       <div class="gallery">
         <div class="tile">🌷</div><div class="tile">💗</div><div class="tile">✨</div>
       </div>
-      <button class="btn secondary" onclick="show('welcome')">ආයෙත් බලන්න ↻</button>
+      <button class="btn secondary" onclick="goToPage('welcome')">ආයෙත් බලන්න ↻</button>
     </section>
-  </main>
-  <div class="footer">Made with a little kindness ♡</div>
+
+  </div>
 </div>
 
 <script>
-function startSurprise() {
-  // Play background music
-  const song = document.getElementById('bdaySong');
-  song.play().catch(error => {
-    console.log("Audio autoplay restricted by browser:", error);
+function goToPage(pageId, startMusic = false) {
+  if (startMusic) {
+    const audio = document.getElementById('bdaySong');
+    audio.play().catch(e => console.log('Audio autoplay prevented:', e));
+  }
+  
+  // Transition logic
+  document.querySelectorAll('.page').forEach(p => {
+    p.classList.remove('active');
   });
-  show('surprise');
+  
+  setTimeout(() => {
+    document.getElementById(pageId).classList.add('active');
+  }, 100);
 }
 
-function show(id){
-  document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function openLetter(){
+function openLetter() {
   document.getElementById('letter').classList.remove('hidden');
   document.getElementById('nextBtn').classList.remove('hidden');
+  document.getElementById('envHint').classList.add('hidden');
   hearts(12);
 }
 
-function blow(){
-  document.getElementById('flames').textContent='✨✨✨';
+function blow() {
+  document.getElementById('flames').textContent = '✨✨✨';
   document.getElementById('wish').classList.remove('hidden');
   hearts(24);
 }
 
-function hearts(n){
-  const chars=['💗','💕','🌸','✨'];
-  for(let i=0;i<n;i++){
-    let e=document.createElement('span');
-    e.className='heart';
-    e.textContent=chars[Math.floor(Math.random()*chars.length)];
-    e.style.left=Math.random()*100+'vw';
-    e.style.fontSize=(14+Math.random()*20)+'px';
-    e.style.animationDuration=(4+Math.random()*4)+'s';
+function hearts(n) {
+  const chars = ['💗', '💕', '🌸', '✨'];
+  for (let i = 0; i < n; i++) {
+    let e = document.createElement('span');
+    e.className = 'heart';
+    e.textContent = chars[Math.floor(Math.random() * chars.length)];
+    e.style.left = Math.random() * 100 + 'vw';
+    e.style.fontSize = (14 + Math.random() * 20) + 'px';
+    e.style.animationDuration = (4 + Math.random() * 4) + 's';
     document.body.appendChild(e);
-    setTimeout(()=>e.remove(),8500);
+    setTimeout(() => e.remove(), 8500);
   }
 }
 
-setInterval(()=>{if(Math.random()>.45)hearts(1)},2600);
+setInterval(() => {
+  if (Math.random() > 0.45) hearts(1);
+}, 2600);
 </script>
 </body>
 </html>
